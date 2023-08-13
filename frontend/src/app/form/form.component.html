@@ -1,9 +1,32 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="bg-gray-100 rounded-lg shadow p-4">
-  <ng-container *ngFor="let campo of campos">
-    <input [type]="obtenerTipoInput(campo)" [id]="campo" formControlName="{{ campo }}" [placeholder]="obtenerTextoPlaceholder(campo)" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-blue-500">
-  </ng-container>
+<div class="wrapper ">
+  <div class="card-switch">
+    <div class="flip-card__inner">
+      <div class="flip-card__front">
+        <div class="title font-roboto_condensed ">{{titulo}}</div>
+        <form
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+          class="flip-card__form"
+        >
+          <ng-container *ngFor="let campo of campos">
+            <input
+              [type]="obtenerTipoInput(campo)"
+              [id]="campo"
+              formControlName="{{ campo }}"
+              [placeholder]="obtenerTextoPlaceholder(campo)"
+              class="flip-card__input"
+            />
+          </ng-container>
 
-  <!-- Botón de envío -->
-  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-    Ingresar</button>
-</form>
+          <button
+            type="submit"
+            class="flip-card__btn"
+          >
+            Ingresar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

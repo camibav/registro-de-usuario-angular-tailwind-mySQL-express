@@ -9,13 +9,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class FormComponent {
   @Input() form!: FormGroup; // <--- Input() decorador indica que la propiedad de formulario se pasa a este componente desde el componente principal.
   @Input() campos!: string[]; // Agrega esta entrada de datos para que el componente de formulario sepa qué campos mostrar.
+  @Input() titulo!: string; // Agrega esta entrada de datos para que el componente de formulario sepa qué título mostrar.
 
   constructor(private formBuilder: FormBuilder) {
     const camposPredeterminados = ['nombre', 'apellido', 'correo', 'contraseña']; // Campos para registro
     this.form = this.formBuilder.group({});
-
     // Si se proporcionan campos personalizados, úsalos
-
     const camposUtilizar = this.campos ? this.campos : camposPredeterminados;
 
     camposUtilizar.forEach(campo => {
