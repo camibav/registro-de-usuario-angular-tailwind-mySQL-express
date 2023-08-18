@@ -16,29 +16,57 @@ const connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-  if (err) throw err;
-  console.log("Connected!");
+  if (err) {
+    console.error("Error al conectar a la base de datos:", err);
+    throw err;
+  }
+  console.log("Conectado a la base de datos!");
 });
+
+// Ruta para registrar un usuario
+app.post("/registrar", (req, res) => {
+  const { nombre, apellido, correo, password } = req.body;
+
+  if (!nombre || !apellido || !correo || !password) {
+    return res.status(400).json({ message: "Faltan campos por llenar" });
+  }
+
+  const sql = `INSERT INTO usuarios (nombre, apellido, correo, password) VALUES (?, ?, ?, ?)`;
+  const values = [nombre, apellido, correo, password];
+
+  connection.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("Error al registrar usuario:", err);
+      return res.status(400).json({ message: "Error al registrar usuario" });
+    }
+    console.log("Usuario registrado con ID:", result.insertId);
+    res.status(201).json({ message: "Usuario registrado exitosamente" })
+  });
+});
+
+//Ruta para iniciar sesión
+app.post("/login", (req, res) => {
+ const { correo, password } = req.body;
+ if (!correo || !password) {
+   return res.status(400).json({ message: "Faltan campos por llenar" });
+ }
+  const sql = `SELECT * FROM usuarios WHERE correo = ? AND password = ?`;
+  const values = [correo, password];
+  connection.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("Error al iniciar sesión:", err);
+      return res.status(400).json({ message: "Error al iniciar sesión" });
+    }
+    if (result.length === 0) {
+      return res.status(401).json({ message: "Correo o contraseña incorrectos" });
+    }
+    console.log("Usuario inicio sesión con ID:", result[0].id);
+    res.status(200).json({ message: "Usuario inicio sesión exitosamente" })
+  })
+})
 
 // Iniciar el servidor en el puerto 3000
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor Express.js en funcionamiento en el puerto ${PORT}`);
-});
-
-//Ruta para registrar un usuario
-app.post("/register", (req, res) => {
-  const { nombre, apellido, correo, contraseña } = req.body;
-  if (!nombre || !apellido || !correo || !contraseña) {
-    res.status(400).send("Faltan datos");
-    return;
-  }
-  const sql = `INSERT INTO usuarios (nombre, apellido, correo, contraseña) VALUES ('${nombre}', '${apellido}', '${correo}', '${contraseña}')`;
-    connection.query(sql, (err, result) => {
-        if(err){
-            res.status(400).send("Error al registrar usuario");
-            return;
-        }
-        res.status(201).send("Usuario registrado");
-    })
 });
