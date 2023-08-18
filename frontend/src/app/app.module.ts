@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormComponent } from './form/form.component';
 import { HomeComponent } from './home/home.component';
+import { ConectarService } from './servicios/conectar.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,9 @@ import { HomeComponent } from './home/home.component';
     CommonModule,
 
   ],
-  providers: [],
+  providers: [
+    ConectarService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
