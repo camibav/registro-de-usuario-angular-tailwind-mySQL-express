@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import{FormGroup,FormBuilder,Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -8,10 +9,13 @@ import{FormGroup,FormBuilder,Validators} from '@angular/forms';
 })
 export class InicioSesionComponent {
   formInicioSesion:FormGroup;
-  constructor(private formBuilder:FormBuilder){
-    this.formInicioSesion=this.formBuilder.group({
-      correo:['',[Validators.required,Validators.email]],
-      contraseña:['',[Validators.required,Validators.minLength(6)]]
-    })
+  constructor(private formBuilder:FormBuilder,private router:Router){
+    this.formInicioSesion=this.formBuilder.group({ })
   }
+  handleFormSubmit(form: FormGroup) {
+
+
+
+  }
+
 }
