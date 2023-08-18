@@ -1,1 +1,3 @@
-<p>perfil works!</p>
+<div class=" flex flex-col   items-center mt-4  w-full">
+<app-form [form]="formPerfil" [campos]="['nombre','correo','foto','teléfono']" [titulo]="'Perfil de usuario'"  (formSubmitted)="handleFormSubmit($event)" ></app-form>
+</div>
