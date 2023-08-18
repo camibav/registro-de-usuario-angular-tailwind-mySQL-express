@@ -1,13 +1,10 @@
-<div class="wrapper ">
+
+<div class="wrapper">
   <div class="card-switch">
     <div class="flip-card__inner">
       <div class="flip-card__front">
-        <div class="title font-roboto_condensed ">{{titulo}}</div>
-        <form
-          [formGroup]="form"
-          (ngSubmit)="onSubmit()"
-          class="flip-card__form"
-        >
+        <div class="title font-roboto_condensed">{{ titulo }}</div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flip-card__form">
           <ng-container *ngFor="let campo of campos">
             <input
               [type]="obtenerTipoInput(campo)"
@@ -18,15 +15,13 @@
             />
           </ng-container>
 
-          <button
-            type="submit"
-            class="flip-card__btn"
-          >
-            Ingresar
-          </button>
+          <button type="submit" class="flip-card__btn">Ingresar</button>
+          <div *ngIf="!form.valid && form.touched" class="validation-message flex justify-center items-center text-white">
+            El formulario no es válido
+          </div>
         </form>
+
       </div>
     </div>
   </div>
 </div>
-
