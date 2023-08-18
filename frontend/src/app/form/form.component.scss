@@ -103,3 +103,17 @@
   box-shadow: 1px 6px 0px 0px var(--main-color);
   transform: translateY(-3px);
 }
+
+.validation-message {
+  width: 88%;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: red;
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 10px;
+  outline: none;
+}
