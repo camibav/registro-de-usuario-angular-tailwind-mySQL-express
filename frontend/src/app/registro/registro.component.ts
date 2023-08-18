@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -8,13 +8,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent {
-formRegistro:FormGroup;
-constructor(private formBuilder:FormBuilder){
-  this.formRegistro=this.formBuilder.group({
-    nombre:['',[Validators.required,Validators.minLength(3)]],
-    apellido:['',[Validators.required,Validators.minLength(3)]],
-    correo:['',[Validators.required,Validators.email]],
-    contraseña:['',[Validators.required,Validators.minLength(6)]]
-  })
+  formRegistro: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+    this.formRegistro = this.formBuilder.group({
+    });
+  }
+
+  handleFormSubmit(form: FormGroup) {
+
+  }
+
 }
-};
