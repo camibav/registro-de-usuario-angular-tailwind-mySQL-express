@@ -7,5 +7,16 @@ CREATE TABLE usuarios (
     correo VARCHAR(100) NOT NULL ,
    password VARCHAR(255) NOT NULL
 );
-select *from usuarios;
-INSERT INTO usuarios (nombre, apellido, correo, password) VALUES ('Camilo', 'Bacca', 'ca@hot.com','camilo12' )
+CREATE TABLE datos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    edad INT,
+    telefono VARCHAR(20),
+    foto VARCHAR(255),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id));
+select *from datos;
+
+INSERT INTO usuarios (nombre, apellido, correo, password) 
+VALUES ('Camilo', 'Bacca', 'ca@hot.com','camilo12' );
+INSERT INTO datos (usuario_id, edad, telefono, foto)
+VALUES (1,25, 3157697148, 'ruta/de/la/foto.jpg');

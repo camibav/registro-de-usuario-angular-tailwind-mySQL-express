@@ -1,7 +1,7 @@
-<div class=" flex flex-col   items-center mt-4  w-full">
+<div  class=" flex flex-col   items-center mt-4  w-full">
 
 
-  <app-form  class="translate-y-[80px]" [form]="formInicioSesion" [campos]="['correo','password']" [titulo]="'Inicio de sesión' " (formSubmitted)="handleFormSubmit($event)" ></app-form>
+  <app-form  class="translate-y-[80px]" [form]="formInicioSesion" [campos]="['correo','password']" [titulo]="'Inicio de sesión' " [button]="'Inicia sesión'" (formSubmitted)="handleFormSubmit($event)" ></app-form>
 
   </div>
 

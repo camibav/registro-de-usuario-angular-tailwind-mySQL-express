@@ -15,7 +15,7 @@
             />
           </ng-container>
 
-          <button type="submit" class="flip-card__btn">Ingresar</button>
+          <button type="submit" class="flip-card__btn">{{button}}</button>
           <div *ngIf="!form.valid && form.touched" class="validation-message flex justify-center items-center text-white">
             El formulario no es válido
           </div>
